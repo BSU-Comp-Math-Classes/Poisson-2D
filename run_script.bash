@@ -1,7 +1,7 @@
 #!/bin/bash
 ###
 ###
-#SBATCH --time=01:10:00
+#SBATCH --time=00:10:00
 #SBATCH -N 1
 #SBATCH -n 1
 #SBATCH --partition=bsudfq
@@ -11,5 +11,5 @@
 #module load gcc mpich slurm
 
 
-./swe_2d 400 0.002 10 1.5
+./poisson 100
 
