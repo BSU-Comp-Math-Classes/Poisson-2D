@@ -7,13 +7,13 @@ Poisson equation is a classic partial differential equation used to model fluid 
  
  To complete the problem, we need to prescribe the boundary conditions, which in this case will be just constant (zero) value of the variable $u = 0$ at the boundary.
 
-We will solve the Poisson equation on a square domain $(x,y) \in [0,\ L] \times [0,\ L]$. To make things easy, we choose a forcing function
+We will solve the Poisson equation on a square domain $(x,y) \in [0,\ 1] \times [0,\ 1]$. To make things easy, we choose a forcing function
 
-$$ f(x,y) = -8\pi^2\sin(2\pi x)\sin(2\pi y) $$
+$$ f(x,y) = -8\pi^2 \sin(2\pi x) \sin(2\pi y) $$
 
 which results in the exact solution (obtained by analytical solution)
 
-$$ u_{exact}(x,y) = \sin(2\pi x)\sin(2\pi y) $$
+$$ u_{exact}(x,y) = \sin(2\pi x) \sin(2\pi y) $$
 
 You are very welcome to change that forcing function if you want to model some more practical problem. Similarily, feel free to adjust boundary conditions if you want, but this can get more tricky, so talk to me if this interests you.
 
@@ -39,6 +39,11 @@ where $\vec{u}$ and $\vec{f}$ are vectors holding all the values of $u_{ij}$ and
 
 We can solve this system by inverting $$\matbf{A}$$ with Gaussian Elimination or other method, but here we will employ a Jaobi iterative solver, which starts from some initial guess for the solution $\vec{u}^0$ and iteratively update it based on the formula
 
-$$ u_{i,j}^{n+1} = \frac14(u_{i-1,j}^n + u_{i+1,j}^n + u_{i,j-1}^n + u_{i,j+1}^n - \De;ta x^2f_{ij}^n);
+$$ u_{i,j}^{n+1} = \frac14(u_{i-1,j}^n + u_{i+1,j}^n + u_{i,j-1}^n + u_{i,j+1}^n - \Delta x^2f_{ij}^n) $$
 
+We iterate this formula until the solution is converged, i.e. does not change too much. Formally, we require that
+
+$$ || \vec{u}^{n+1} - \vec{u}^{n} ||_2 < \epsilon $$
+
+where $ || . ||_2$ is an $L_2$ vector norm, and $\epsilon$ is a tunable parameter which defines how accurate the result we want to have.
 
