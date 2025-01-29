@@ -37,7 +37,7 @@ $$ \frac1{\Delta x^2} \mathbf{A} \vec{u} = \vec{f} $$
 
 where $\vec{u}$ and $\vec{f}$ are vectors holding all the values of $u_{ij}$ and $f_{ij}$ respectively, and matrix $\mathbf{A}$ is formed from the coefficients in the discretized point-wise equation.
 
-We can solve this system by inverting $$\matbf{A}$$ with Gaussian Elimination or other method, but here we will employ a Jaobi iterative solver, which starts from some initial guess for the solution $\vec{u}^0$ and iteratively update it based on the formula
+We can solve this system by inverting $\mathbf{A}$ with Gaussian elimination (expensive!) or another method, but here we will employ a Jaobi iterative solver, which starts from some initial guess for the solution $\vec{u}^0$ and iteratively update it based on the formula
 
 $$ u_{i,j}^{n+1} = \frac14(u_{i-1,j}^n + u_{i+1,j}^n + u_{i,j-1}^n + u_{i,j+1}^n - \Delta x^2f_{ij}^n) $$
 
@@ -45,5 +45,5 @@ We iterate this formula until the solution is converged, i.e. does not change to
 
 $$ || \vec{u}^{n+1} - \vec{u}^{n} ||_2 < \epsilon $$
 
-where $ || . ||_2$ is an $L_2$ vector norm, and $\epsilon$ is a tunable parameter which defines how accurate the result we want to have.
+where $ || . ||_2$ is an $L_2$ vector norm, and $\epsilon$ is a tunable parameter which defines how accurate the result we want to have. By default I choose $\epsilon = 10^{-8}$, but you can adjust it if the convergence is too slow.   
 
