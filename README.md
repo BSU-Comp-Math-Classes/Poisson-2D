@@ -45,5 +45,5 @@ We iterate this formula until the solution is converged, i.e. does not change to
 
 $$ || \vec{u}^{n+1} - \vec{u}^{n} ||_2 < \epsilon $$
 
-where $ || . ||_2$ is an $L_2$ vector norm, and $\epsilon$ is a tunable parameter which defines how accurate the result we want to have. By default I choose $\epsilon = 10^{-8}$, but you can adjust it if the convergence is too slow.   
+where $||  ||_2$ is an $L_2$ vector norm, and $\epsilon$ is a tunable parameter which defines how accurate the result we want to have. By default I choose $\epsilon = 10^{-8}$, but you can adjust it if the convergence is too slow.   
 
